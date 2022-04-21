@@ -862,7 +862,6 @@ body {
     margin-left: 2px;
     height: 70vh;
     overflow-y: scroll;
-    /* display: none; */
   }
   .layers-selector-dropdown{
     height: 70vh;
