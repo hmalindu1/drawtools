@@ -715,6 +715,15 @@ $(document).ready(function () {
     });
   });
 
+  $(".mcs-accordion-btn").each(function (index) {
+    $(this).on("click", function () {
+      $('.btn-district-btn').each(function(index){
+        $(this).removeClass('active');
+      })
+      $('.expand-menu-2').addClass('hide-section');
+      $('.expand-menu-3').addClass('hide-section');
+    });
+  });
   // expand third menu
   $(".second-menu-btn").each(function (index) {
     $(this).on("click", function () {
