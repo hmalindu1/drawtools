@@ -91,30 +91,30 @@
             <form action="">
               <div class="row">
                 <div class="col-md-4 search-form-label-col">
+                  <h5 class="search-form-label">Parcel ID :</h5>
+                </div>
+                <div class="col-md-8">
+                  <input type="text" class="form-control mb-3 search-form-input" id="parcel-id" aria-describedby="nameHelp" />
+                </div>
+                <div class="col-md-4 search-form-label-col">
+                  <h5 class="search-form-label">Address :</h5>
+                </div>
+                <div class="col-md-8">
+                  <input type="text" class="form-control mb-3 search-form-input" id="address" aria-describedby="nameHelp" />
+                </div>
+                <div class="col-md-4 search-form-label-col">
                   <h5 class="search-form-label">Name :</h5>
                 </div>
                 <div class="col-md-8">
                   <input type="text" class="form-control mb-3 search-form-input" id="name" aria-describedby="nameHelp" />
                 </div>
                 <div class="col-md-4 search-form-label-col">
-                  <h5 class="search-form-label">ID :</h5>
+                  <h5 class="search-form-label">NID :</h5>
                 </div>
                 <div class="col-md-8">
-                  <input type="text" class="form-control mb-3 search-form-input" id="id" aria-describedby="nameHelp" />
+                  <input type="text" class="form-control mb-3 search-form-input" id="nid" aria-describedby="nameHelp" />
                 </div>
-                <div class="col-md-4 search-form-label-col">
-                  <h5 class="search-form-label">Province Name :</h5>
-                </div>
-                <div class="col-md-8">
-                  <input type="text" class="form-control mb-3 search-form-input" id="province" aria-describedby="nameHelp" />
-                </div>
-                <div class="col-md-4 search-form-label-col">
-                  <h5 class="search-form-label">District Name :</h5>
-                </div>
-                <div class="col-md-8">
-                  <input type="text" class="form-control mb-3 search-form-input" id="district" aria-describedby="nameHelp" />
-                </div>
-                <div class="col-md-4 search-form-label-col">
+                <!-- <div class="col-md-4 search-form-label-col">
                   <h5 class="search-form-label">MC Name :</h5>
                 </div>
                 <div class="col-md-8">
@@ -131,7 +131,7 @@
                 </div>
                 <div class="col-md-8">
                   <input type="text" class="form-control mb-3 search-form-input" id="acc" aria-describedby="nameHelp" />
-                </div>
+                </div> -->
               </div>
             </form>
           </div>
@@ -3358,18 +3358,270 @@
       <!-- begin : Map Section -->
       <div class="d-flex flex-column flex-shrink-0 text-white bg-dark map-section map" id="mymap">
         <div class="map-toolbar-sec">
-          <button class="btn tool-btn"><i class="fas fa-reply"></i>BACK OUT</button>
-          <button class="btn tool-btn"><i class="fas fa-puzzle-piece"></i>BOUNDS</button>
           <div class="btn-group">
-            <button class="btn tool-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-globe"></i></i>LAYERS</button>
-            <div class="dropdown-menu">
-              <button class="btn layer-btn">Layer 1</button>              
-              <button class="btn layer-btn">Layer 2</button>              
-              <button class="btn layer-btn">Layer 3</button>              
-              <button class="btn layer-btn">Layer 4</button>
+            <button class="btn tool-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"><i class="fas fa-globe"></i></i>Display MCs</button>
+            <div class="dropdown-menu mcs-dropdown-menu">
+              <div class="mc-selector-main">
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button mcs-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Uva
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body mcs-district-accordion-body">
+                        <ul>
+                          <li class="btn btn-district-btn w-100">Badulla <i class="fas fa-angle-right"></i></li>
+                          <li class="btn btn-district-btn w-100">Monaragala <i class="fas fa-angle-right"></i></li>
+                          <li class="btn btn-district-btn w-100">New District <i class="fas fa-angle-right"></i></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="menu-fixed hide-section expand-menu-2">
+                  <ul>
+                    <li class="btn w-100 second-menu-btn">Ds1 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds2 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds3 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds1 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds2 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds3 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds1 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds2 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds3 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds1 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds2 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds3 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds1 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds2 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds3 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds1 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds2 <i class="fas fa-angle-right"></i></li>
+                    <li class="btn w-100 second-menu-btn">Ds3 <i class="fas fa-angle-right"></i></li>
+                  </ul>
+                </div>
+                <div class="menu-fixed hide-section expand-menu-3">
+                  <ul>
+                    <li class="btn w-100 third-menu-btn">MC1</li>
+                    <li class="btn w-100 third-menu-btn">MC2</li>
+                    <li class="btn w-100 third-menu-btn">MC3</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-          <button class="btn tool-btn"><i class="fas fa-location-arrow"></i>LOCATE ME</button>
+          <button class="btn tool-btn"><i class="fas fa-search-plus"></i>ZOOM LEVEL</button>
+          <button class="btn tool-btn"><i class="fas fa-reply"></i>BACK</button>
+          <button class="btn tool-btn"><i class="fas fa-puzzle-piece"></i>VERTICAL LEVEL</button>
+          <div class="btn-group">
+            <button class="btn tool-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="false" ><i class="fas fa-layer-group"></i>LAYERS</button>
+            <div class="dropdown-menu dropdown-menu-block layers-selector-dropdown">
+              <div class="display-inline">
+                <button class="btn layer-btn">OSM</button>              
+                <button class="btn layer-btn">BingMaps</button> 
+              </div>
+              <div class="options-section">
+                <div class="accordion accordion-flush" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h3 class="dashboard-h3">MC Areas</h3>
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <form action="">
+                          <div class="licenses-fees">
+                            <div class="dashboard-details-sec">
+                              <ul class="overview-ul">
+                                <li>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Tax
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Building
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Street lines
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Roads
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Valuation
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Building line
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion accordion-flush" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h3 class="dashboard-h3">Land Use Information</h3>
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <form action="">
+                          <div class="licenses-fees">
+                            <div class="dashboard-details-sec">
+                              <ul class="overview-ul">
+                                <li>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Paddy
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Home Garden
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Tea
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Rubber
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Coconut
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Slope
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion accordion-flush" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                        <h3 class="dashboard-h3">Electricity Lines</h3>
+                      </button>
+                    </h2>
+                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <form action="">
+                          <div class="licenses-fees">
+                            <div class="dashboard-details-sec">
+                              <ul class="overview-ul">
+                                <li>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Lorem ipsum
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Lorem ipsum
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Lorem ipsum
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Lorem ipsum
+                                        </label>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Lorem ipsum
+                                        </label>
+                                      </div>
+                                      <div class="form-check label-left">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                          Lorem ipsum
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn tool-btn" data-bs-toggle="modal" data-bs-target="#search-modal"><i class="fas fa-location-arrow"></i>LOCATE ME</button>
         </div>
       </div>
       <!-- end : Map Section -->

@@ -704,6 +704,28 @@ $(document).ready(function () {
   //   });
   // });
 
+  // expand second menu
+  $(".btn-district-btn").each(function (index) {
+    $(this).on("click", function () {
+      $('.btn-district-btn').each(function(index){
+        $(this).removeClass('active');
+      })
+      $(this).addClass('active');
+      $('.expand-menu-2').removeClass('hide-section');
+    });
+  });
+
+  // expand third menu
+  $(".second-menu-btn").each(function (index) {
+    $(this).on("click", function () {
+      $('.second-menu-btn').each(function(index){
+        $(this).removeClass('active');
+      })
+      $(this).addClass('active');
+      $('.expand-menu-3').removeClass('hide-section');
+    });
+  });
+
   /* Dashboard Close Function */
   $(".btn-sidebar-det-close").click(function () {
 

@@ -805,6 +805,116 @@ body {
   #button_point i,#button_line i,#button_polygon i,#button_start_edit i,#button_start_delete i{
     font-size: 12px;
   }
+  .dropdown-menu button.mcs-accordion-btn{
+    width: 100%;
+    margin: 0px;
+    padding: 5px;
+  }
+  .map-toolbar-sec button.mcs-accordion-btn{
+    background-color: transparent;
+  }
+  .mcs-dropdown-menu{
+    width: 100%;
+  }
+  .mcs-dropdown-menu.show{
+    display: block;
+  }
+  .mcs-dropdown-menu .accordion{
+    margin-top: 0px;
+  }
+  .mcs-dropdown-menu .accordion{
+    padding: 0px;
+  }
+  .map-toolbar-sec .mcs-district-accordion-body .btn-group.dropend{
+    width: 100%;
+  }
+  .map-toolbar-sec .mcs-district-accordion-body{
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .map-toolbar-sec .mcs-district-accordion-body button{
+    background-color: transparent;
+    border-radius: 0px;
+    color: black;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    text-align: left;
+    justify-content: flex-start;
+  }
+  .mcs-dropdown-menu{
+    padding: 0px;
+  }
+  .map-toolbar-sec .mcs-district-accordion-body .block-list.show{
+    display: block;
+    width: 100%;
+  }
+  .map-toolbar-sec .mcs-district-accordion-body button.dropdown-toggle::after{
+    position: absolute;
+    right: 0;
+  }
+  .mc-selector-main{
+    display: inline-flex;
+  }
+  .menu-fixed{
+    background-color: white;
+    width: 15vw;
+    margin-left: 2px;
+    height: 70vh;
+    overflow-y: scroll;
+    /* display: none; */
+  }
+  .layers-selector-dropdown{
+    height: 70vh;
+    overflow-y: scroll;
+  }
+  .mc-selector-main ul{
+    padding-left: 0px;
+  }
+  li.btn-district-btn,.menu-fixed li.btn{
+    background-color: white;
+    color: black;
+    text-align: left;
+    font-size: 15px;
+  }
+  li.btn-district-btn i,.menu-fixed li.btn i{
+    float: right;
+    margin-top: 5px;
+  }
+  .mc-selector-main .accordion{
+    width: 12vw;
+  }
+  .menu-fixed::-webkit-scrollbar-track,.layers-selector-dropdown::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 6px white;
+      border-radius: 10px;
+      background-color: #F5F5F5;
+  }  
+  .menu-fixed::-webkit-scrollbar,.layers-selector-dropdown::-webkit-scrollbar{
+      width: 5px;
+      background-color: #F5F5F5;
+  }  
+  .menu-fixed::-webkit-scrollbar-thumb,.layers-selector-dropdown::-webkit-scrollbar-thumb{
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 3px white;
+      background-color: #cecece ;
+  }
+
+  li.btn-district-btn.active,.menu-fixed li.btn.active{
+    color: white;
+    background-color: #005f86 !important;
+  }
+  .dropdown-menu-block.show{
+    display: block;
+  }
+  .display-inline{
+    display: inline-flex;
+  }
+  .label-left{
+    padding-left: 0px;
+  }
+  .label-left .form-check-input{
+    float: right;
+  }
   @media(max-width:1440px){
     .sidebar-details-col{
       width: 30vw;
