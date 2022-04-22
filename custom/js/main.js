@@ -30,6 +30,7 @@ var overview_section = $('.overview-section');
 var save_section = $('.save-section');
 var share_section = $('.share-section');
 var bw_mc_section = $('.bw-mc-section');
+var export_section = $('.export-section');
 var sidebar_width = $('.sidebar-col').width();
 var sidebar_details_col = $('.sidebar-details-col');
 var map_section = $('.map-section');
@@ -690,19 +691,19 @@ $(document).ready(function () {
   });
 
   /* Dashboard Expand Function */
-  // $(".nav-link").each(function (index) {
-  //   $(this).on("click", function () {
+  $(".nav-link").each(function (index) {
+    $(this).on("click", function () {
 
-  //     if (check_class) {
-  //       sidebar_details_col.removeClass('hide');
-  //     } else {
-  //       return;
-  //     }
+      if (check_class) {
+        sidebar_details_col.removeClass('hide');
+      } else {
+        return;
+      }
 
-  //     toolbar.addClass('go-right-toolbar');
-  //     $('.ol-overlaycontainer-stopevent').addClass('go-right');
-  //   });
-  // });
+      toolbar.addClass('go-right-toolbar');
+      $('.ol-overlaycontainer-stopevent').addClass('go-right');
+    });
+  });
 
   // expand second menu
   $(".btn-district-btn").each(function (index) {
@@ -768,7 +769,7 @@ $(document).ready(function () {
       });
     } else {
       $(this).css({
-        'cursor':'not-allowed',
+        // 'cursor':'not-allowed',
       })
     }
   
@@ -847,8 +848,18 @@ $(document).ready(function () {
       share_section.addClass('hide-section');
     }
   });
+  $("#export-btn").click(function () {    
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    export_section.removeClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    overview_section.addClass('hide-section');
+    save_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+  });
   /* end: Dashboard Content Change Dummy */
-
-
 
 });

@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
     <!-- Openlayers CSS -->
@@ -25,9 +26,12 @@
     <!-- jQuery Ui -->
     <script src="./assets/js/jquery-ui.min.js"></script>
     <!-- Bootsrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <!-- LayerSwitcher js -->
     <script src="./assets/js/ol-layerswitcher.js"></script>
+
+
 
   </head>
   <body>
@@ -264,16 +268,34 @@
               <i class="fas fa-map-marked-alt sidebar-li-icon"></i> Overview </button>
           </li>
           <li class="nav-item sidebar-list-item">
-            <button href="#" id="bw-mc-btn" class="nav-link text-white" aria-current="page">
-              <i class="fas fa-globe sidebar-li-icon"></i> BW MC </button>
+            <div class="accordion sidebar-accordion" id="accordionExample-ds">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-accordion-1" aria-expanded="true" aria-controls="sidebar-accordion-1">
+                    <i class="fas fa-tasks"></i>Data Sets
+                  </button>
+                </h2>
+                <div id="sidebar-accordion-1" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample-ds">
+                  <div class="accordion-body">
+                    <button href="#" id="export-btn" class="nav-link text-white" aria-current="page">
+                      <i class="fas fa-download sidebar-li-icon"></i> Export </button>
+                    <button href="#" id="import-btn" class="nav-link text-white" aria-current="page">
+                      <i class="fas fa-upload sidebar-li-icon"></i> Import </button>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <!-- <button href="#" id="bw-mc-btn" class="nav-link text-white" aria-current="page">
+              <i class="fas fa-globe sidebar-li-icon"></i> BW MC </button> -->
           </li>
           <li class="nav-item sidebar-list-item">
             <button href="#" id="save-btn" class="nav-link text-white">
-              <i class="fas fa-save sidebar-li-icon"></i> Save </button>
+              <i class="fas fa-save sidebar-li-icon"></i> Print </button>
           </li>
           <li class="nav-item sidebar-list-item">
             <button href="" id="share-btn" class="nav-link text-white">
-              <i class="fas fa-share sidebar-li-icon"></i> Share </button>
+              <i class="fas fa-share sidebar-li-icon"></i> Data Store </button>
           </li>
         </ul>
       </div>
@@ -1607,6 +1629,111 @@
           </div>
           <!-- end : BW MC Section Section -->
 
+          <!-- begin: Export Section -->
+          <div class="export-section">
+            <form action="">
+              <div class="row form-row">
+                <div class="col-md-4 form-label-col form-col">
+                  <h5 class="label">Select MCs</h5>
+                </div>
+                <div class="col-md-8 form-col">
+                  <select class="form-select form-input" multiple aria-label="Default select example">
+                    <option selected>Select from list</option>
+                    <option value="1">MC 1</option>
+                    <option value="2">MC 2</option>
+                    <option value="3">MC 3</option>
+                    <option value="1">MC 1</option>
+                    <option value="2">MC 2</option>
+                    <option value="3">MC 3</option>
+                    <option value="1">MC 1</option>
+                    <option value="2">MC 2</option>
+                    <option value="3">MC 3</option>
+                    <option value="1">MC 1</option>
+                    <option value="2">MC 2</option>
+                    <option value="3">MC 3</option>
+                    <option value="1">MC 1</option>
+                    <option value="2">MC 2</option>
+                    <option value="3">MC 3</option>
+                    <option value="1">MC 1</option>
+                    <option value="2">MC 2</option>
+                    <option value="3">MC 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row form-row">
+                <div class="col-md-4 form-label-col form-col">
+                  <h5 class="label">Select Layers</h5>
+                </div>
+                <div class="col-md-8 form-col">
+                  <select class="form-select form-input" aria-label="Default select example">
+                    <option selected>Select from list</option>
+                    <option value="1">Layer 1</option>
+                    <option value="2">Layer 2</option>
+                    <option value="3">Layer 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row form-row">
+                <div class="col-md-4 form-label-col form-col">
+                  <h5 class="label">Export Format</h5>
+                </div>
+                <div class="col-md-8 form-col">
+                  <select class="form-select form-input" aria-label="Default select example">
+                    <option selected>Select from list</option>
+                    <option value="1">Format 1</option>
+                    <option value="2">Format 2</option>
+                    <option value="3">Format 3</option>
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-save">Export</button>
+            </form>
+          </div>
+          <!-- end: Export Section -->
+
+          <!-- begin: Import Section -->
+          <div class="import-section">
+            <form action="">
+              <div class="row form-row">
+                <div class="col-md-4 form-label-col form-col">
+                  <h5 class="label">Select file to upload</h5>
+                </div>
+                <div class="col-md-8 form-col">
+                  <input type="file" class="form-control" id="inputGroupFile02">
+                  <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
+              </div>
+              <div class="row form-row">
+                <div class="col-md-4 form-label-col form-col">
+                  <h5 class="label">Select Layers</h5>
+                </div>
+                <div class="col-md-8 form-col">
+                  <select class="form-select form-input" aria-label="Default select example">
+                    <option selected>Select from list</option>
+                    <option value="1">Layer 1</option>
+                    <option value="2">Layer 2</option>
+                    <option value="3">Layer 3</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row form-row">
+                <div class="col-md-4 form-label-col form-col">
+                  <h5 class="label">Import Format</h5>
+                </div>
+                <div class="col-md-8 form-col">
+                  <select class="form-select form-input" aria-label="Default select example">
+                    <option selected>Select from list</option>
+                    <option value="1">Format 1</option>
+                    <option value="2">Format 2</option>
+                    <option value="3">Format 3</option>
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-save">Import</button>
+            </form>
+          </div>
+          <!-- end: Import Section -->
+
           <!-- begin : Dashboard Save Section -->
           <div class="save-section">
             <form action="">
@@ -1758,14 +1885,14 @@
               <img src="images/land.jpg" class="w-100" alt="" />
             </div>
             <!-- parcel overview -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-parcel">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     <h3 class="dashboard-h3">Parcel Overview</h3>
                   </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample-parcel">
                   <div class="accordion-body">
                     <div class="parcel-overview">
                       <form action="">
@@ -2263,14 +2390,14 @@
             </div>
 
             <!-- begin : administrative information -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-admin-info">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <h3 class="dashboard-h3">Administrative Information</h3>
                   </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-admin-info">
                   <div class="accordion-body">
                     <div class="administrative-information">
                       <form action="">
@@ -2502,14 +2629,14 @@
             <!-- end : administrative information -->
 
             <!-- begin : right information -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-right-info">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     <h3 class="dashboard-h3">Right Information</h3>
                   </button>
                 </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-right-info">
                   <div class="accordion-body">
                     <div class="right-information">
                       <form action="">
@@ -2956,14 +3083,14 @@
             <!-- end : right information -->
 
             <!-- begin : survey plan information -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-sp-info">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                     <h3 class="dashboard-h3">Survey Plan Information</h3>
                   </button>
                 </h2>
-                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-sp-info">
                   <div class="accordion-body">
                     <form action="">
                       <button class="btn dashboard-form-submit-btn" type="submit">Save</button>
@@ -3030,14 +3157,14 @@
             
 
             <!-- begin : survey data source -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-sd-source">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                     <h3 class="dashboard-h3">Survey Data Source</h3>
                   </button>
                 </h2>
-                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-sd-source">
                   <div class="accordion-body">
                     <form action="">
                       <button class="btn dashboard-form-submit-btn" type="submit">Save</button>
@@ -3114,14 +3241,14 @@
           <!-- begin : BW MC Section -->
           <div class="bw-mc-section">
             <!-- begin : assessment rates -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-bw-mc">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                     <h3 class="dashboard-h3">Assessment Rates</h3>
                   </button>
                 </h2>
-                <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample-bw-mc">
                   <div class="accordion-body">
                     <form action="">
                       <button class="btn dashboard-form-submit-btn" type="submit">Save</button>
@@ -3206,14 +3333,14 @@
             <!-- end : assessment rates -->
 
             <!-- begin : licenses fees -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-lf">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                     <h3 class="dashboard-h3">Licenses Fees</h3>
                   </button>
                 </h2>
-                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-lf">
                   <div class="accordion-body">
                     <form action="">
                       <button class="btn dashboard-form-submit-btn" type="submit">Save</button>
@@ -3276,14 +3403,14 @@
             <!-- end : licenses fees -->
 
             <!-- begin : taxation -->
-            <div class="accordion accordion-flush" id="accordionExample">
+            <div class="accordion accordion-flush" id="accordionExample-tax">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                     <h3 class="dashboard-h3">Taxation</h3>
                   </button>
                 </h2>
-                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-tax">
                   <div class="accordion-body">
                     <form action="">
                       <button class="btn dashboard-form-submit-btn" type="submit">Save</button>
@@ -3359,17 +3486,17 @@
       <div class="d-flex flex-column flex-shrink-0 text-white bg-dark map-section map" id="mymap">
         <div class="map-toolbar-sec">
           <div class="btn-group">
-            <button class="btn tool-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"><i class="fas fa-globe"></i></i>Display MCs</button>
+            <button class="btn tool-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"><i class="fas fa-globe"></i></i>DISPLAY MCs</button>
             <div class="dropdown-menu mcs-dropdown-menu">
               <div class="mc-selector-main">
-                <div class="accordion" id="accordionExample">
+                <div class="accordion" id="accordionExample-dmcs">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                       <button class="accordion-button mcs-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-new-100" aria-expanded="true" aria-controls="collapse-new-100">
                         Uva
                       </button>
                     </h2>
-                    <div id="collapse-new-100" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapse-new-100" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample-dmcs">
                       <div class="accordion-body mcs-district-accordion-body">
                         <ul>
                           <li class="btn btn-district-btn w-100">Badulla <i class="fas fa-angle-right"></i></li>
@@ -3424,14 +3551,14 @@
               </div>
               <hr>
               <div class="options-section">
-                <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion accordion-flush" id="accordionExample-layers">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-new-1" aria-expanded="false" aria-controls="collapse-new-1">
                         <h3 class="dashboard-h3">MC Areas</h3>
                       </button>
                     </h2>
-                    <div id="collapse-new-1" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapse-new-1" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-layers">
                       <div class="accordion-body">
                         <form action="">
                           <div class="licenses-fees">
@@ -3489,14 +3616,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion accordion-flush" id="accordionExample-lu-info">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-new-2" aria-expanded="false" aria-controls="collapse-new-2">
                         <h3 class="dashboard-h3">Land Use Information</h3>
                       </button>
                     </h2>
-                    <div id="collapse-new-2" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapse-new-2" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-lu-info">
                       <div class="accordion-body">
                         <form action="">
                           <div class="licenses-fees">
@@ -3554,14 +3681,14 @@
                     </div>
                   </div>
                 </div>
-                <div class="accordion accordion-flush" id="accordionExample">
+                <div class="accordion accordion-flush" id="accordionExample-el">
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-new-3" aria-expanded="false" aria-controls="collapse-new-3">
                         <h3 class="dashboard-h3">Electricity Lines</h3>
                       </button>
                     </h2>
-                    <div id="collapse-new-3" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div id="collapse-new-3" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample-el">
                       <div class="accordion-body">
                         <form action="">
                           <div class="licenses-fees">
@@ -3656,10 +3783,6 @@
         document.querySelector(".admin-view").style.display = "none";
         document.querySelector(".users-view").style.display = "";
       }
-    </script>
-
-    <script>
-     
     </script>
 
   </body>

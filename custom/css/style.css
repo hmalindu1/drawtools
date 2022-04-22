@@ -956,6 +956,39 @@ body {
   .options-section h3.dashboard-h3{
     font-size: 15px;
   }
+  .sidebar-accordion .accordion-item{
+    background-color: #005f86;
+    border: none;
+  }
+  .sidebar-accordion .accordion-item .accordion-button{
+    color: white;
+    padding: .5rem 1rem;
+  }
+  .sidebar-accordion .accordion-item .accordion-button i{
+    margin-right: 15px;
+  }
+  .sidebar-accordion .accordion-item .accordion-body{
+    background-color: #005f86 !important;
+  }
+  .sidebar-accordion{
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 0px;
+  }
+  .sidebar-accordion .accordion-button::after{
+    background-image: none;
+    content: '\f078';
+    font-family: 'FontAwesome';
+    width: auto;
+    height: auto;
+  }
+  .sidebar-accordion .accordion-button:not(.collapsed)::after{
+    background-image: none;
+    content: '\f078';
+    font-family: 'FontAwesome';
+    width: auto;
+    height: auto;
+  }
   @media(max-width:1440px){
     .sidebar-details-col{
       width: 30vw;
