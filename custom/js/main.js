@@ -31,6 +31,7 @@ var save_section = $('.save-section');
 var share_section = $('.share-section');
 var bw_mc_section = $('.bw-mc-section');
 var export_section = $('.export-section');
+var import_section = $('.import-section');
 var sidebar_width = $('.sidebar-col').width();
 var sidebar_details_col = $('.sidebar-details-col');
 var map_section = $('.map-section');
@@ -855,6 +856,20 @@ $(document).ready(function () {
       return;
     }
     export_section.removeClass('hide-section');
+    import_section.addClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    overview_section.addClass('hide-section');
+    save_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+  });
+  $("#import-btn").click(function () {    
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    import_section.removeClass('hide-section');
+    export_section.addClass('hide-section');
     bw_mc_section.addClass('hide-section');
     overview_section.addClass('hide-section');
     save_section.addClass('hide-section');

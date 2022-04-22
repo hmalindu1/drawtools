@@ -989,6 +989,10 @@ body {
     width: auto;
     height: auto;
   }
+  .custom-col-8{
+    display: flex;
+    align-items: flex-end;
+  }
   @media(max-width:1440px){
     .sidebar-details-col{
       width: 30vw;
