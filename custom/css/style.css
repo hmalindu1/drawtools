@@ -346,7 +346,7 @@ h5.label {
     padding-right: 0px !important;
     border-right: 1px solid rgba(128, 128, 128, 0.137);
     z-index: 888;
-    transition: all 0.3s;
+    transition: width 0.3s;
 }
 
 .sidebar-det-list-sec {
@@ -1611,6 +1611,13 @@ td {
 
 #show-form-modal h3{
     font-size: 22px;
+}
+
+.sidebar-details-col.col-pt-30{
+    padding-top: 30px !important;
+}
+.col-pt-30 .btn-sidebar-det-close{
+    top: -30px;
 }
 
 @media(max-width: 1440px) {

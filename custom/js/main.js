@@ -836,7 +836,9 @@ $(document).ready(function () {
     bw_mc_section.addClass('hide-section');
     data_store_section.addClass('hide-section');
     $('.boundary-text').removeClass('hide-section');
+    $('.boundary-title').removeClass('hide-section');
     $('.sidebar-det-top-sec').removeClass('hide-section');
+    $('.sidebar-details-col').removeClass('col-pt-30');
   });
   $("#save-btn").click(function () {
     if (g_id) {
@@ -892,6 +894,8 @@ $(document).ready(function () {
     share_section.addClass('hide-section');
     data_store_section.addClass('hide-section');
     $('.boundary-text').addClass('hide-section');
+    $('.boundary-title').addClass('hide-section');
+    $('.sidebar-details-col').addClass('col-pt-30');
     // $('.sidebar-det-top-sec').addClass('hide-section');
   });
   $("#import-btn").click(function () {    
@@ -909,6 +913,8 @@ $(document).ready(function () {
     print_section.addClass('hide-section');
     data_store_section.addClass('hide-section');
     $('.boundary-text').addClass('hide-section');
+    $('.boundary-title').addClass('hide-section');
+    $('.sidebar-details-col').addClass('col-pt-30');
     // $('.sidebar-det-top-sec').addClass('hide-section');
   });
   $("#print-btn").click(function(){
@@ -923,8 +929,11 @@ $(document).ready(function () {
     bw_mc_section.addClass('hide-section');
     overview_section.addClass('hide-section');
     share_section.addClass('hide-section');
+    save_section.addClass('hide-section');
     data_store_section.addClass('hide-section');
     $('.boundary-text').addClass('hide-section');
+    $('.boundary-title').addClass('hide-section');
+    $('.sidebar-details-col').addClass('col-pt-30');
     // $('.sidebar-det-top-sec').addClass('hide-section');
   })
   $("#data-store-btn").click(function(){
@@ -942,6 +951,8 @@ $(document).ready(function () {
     share_section.addClass('hide-section');
     save_section.addClass('hide-section');
     $('.boundary-text').addClass('hide-section');
+    $('.boundary-title').addClass('hide-section');
+    $('.sidebar-details-col').addClass('col-pt-30');
     // $('.sidebar-det-top-sec').addClass('hide-section');
   })
   $('.sidebar-col').click(function(){
