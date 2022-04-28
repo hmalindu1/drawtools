@@ -22,13 +22,35 @@ var feature; // Clicked feature on function to find clicked geometry
 var drawn_feature; // drawn feature after the feature is added to the map
 var updated_feature; // updated feature after the feature is updated on the map
 var load_features; // loaded feature after the feature is loaded on the map
-var f_id;
+var g_id; // New variable for gid
+// var sl_level;
+
+/* begin: Dashboard Content Change Dummy */
+var overview_section = $('.overview-section');
+var save_section = $('.save-section');
+var share_section = $('.share-section');
+var bw_mc_section = $('.bw-mc-section');
+var export_section = $('.export-section');
+var import_section = $('.import-section');
+var print_section = $('.print-section');
+var data_store_section = $('.data-store-section');
+var display_mcs_btn = $('.display-mcs-btn');
+var zoom_level_btn = $('.zoom-level-btn');
+var layers_btn = $('.layers-btn');
+var sidebar_width = $('.sidebar-col').width();
+var sidebar_details_col = $('.sidebar-details-col');
+var map_section = $('.map-section');
+var btns = document.getElementsByClassName("nav-link");
+var check_class = sidebar_details_col.hasClass('hide');
+var controllers = $('.ol-overlaycontainer-stopevent');
+var toolbar = $('.map-toolbar-sec');
+
 // Custom Control
 $.ajax({
   type: 'POST',
   url: 'scripts/load_features.php',
   // dataType: 'json',
-  success: function(data, status) {
+  success: function (data, status) {
     class polygon_button extends ol.control.Control {
       /**
        * @param {Object} [opt_options] Control options.
@@ -113,9 +135,9 @@ $.ajax({
           map.removeInteraction(edit); // if edit mode is on, then turn it off
           flag_is_editing_mode_on = false
           document.getElementById('button_start_edit').innerHTML = '<i class="fas fa-edit"></i>' // Setting the button to initial state
-          define_type_of_features(); // Activate the function in editing mode on
-          change_modal_button(); // Activate the function to change the modal button
-          $('#enter_information_modal').modal('show'); // Show form to enter the information when the button is clicked after editing a feature when edit mode is on
+          /*define_type_of_features(); // Activate the function in editing mode on*/
+          /*change_modal_button(); // Activate the function to change the modal button*/
+          /* $('#enter_information_modal').modal('show'); // Show form to enter the information when the button is clicked after editing a feature when edit mode is on*/
         }
       }
     }
@@ -258,9 +280,9 @@ $.ajax({
               url: 'scripts/delete_features.php',
               type: 'POST', // method
               data: {
-                id_of_feature: f_id, // new variables for passing data
+                id_of_feature: g_id, // new variables for passing data
               },
-              success: function() {
+              success: function () {
                 alert("Feature deleted successfully!");
                 console.log("Feature deleted successfully!")
               }
@@ -281,10 +303,68 @@ $.ajax({
       zoom: 17
     });
 
-    // OSM Layer
-    var baseLayer = new ol.layer.Tile({
-      source: new ol.source.OSM()
-    });
+    // Base Layer
+    var baseLayer = new ol.layer.Group({
+      // A layer must have a title to appear in the layerswitcher
+      title: 'Base maps',
+      fold: 'open',
+      layers: [
+        /*new ol.layer.Group({
+          // A layer must have a title to appear in the layerswitcher
+          title: 'Water color with labels',
+          // Setting the layers type to 'base' results
+          // in it having a radio button and only one
+          // base layer being visibile at a time
+          type: 'base',
+          // Setting combine to true causes sub-layers to be hidden
+          // in the layerswitcher, only the parent is shown
+          combine: true,
+          visible: false,
+          layers: [
+            new ol.layer.Tile({
+              source: new ol.source.Stamen({
+                layer: 'watercolor'
+              })
+            }),
+            new ol.layer.Tile({
+              source: new ol.source.Stamen({
+                layer: 'terrain-labels'
+              })
+            })
+          ]
+        }),
+        new ol.layer.Tile({
+          // A layer must have a title to appear in the layerswitcher
+          title: 'Water color',
+          // Again set this layer as a base layer
+          type: 'base',
+          visible: false,
+          source: new ol.source.Stamen({
+            layer: 'watercolor'
+          })
+        }),*/
+        new ol.layer.Tile({
+          // A layer must have a title to appear in the layerswitcher
+          title: 'BingMaps',
+          // Again set this layer as a base layer
+          type: 'base',
+          visible: true,
+          source: new ol.source.BingMaps({
+            key: 'AshrP2YvBPN60emxJEFYNNNtBYcUAqEJ2J0FctgznIkRgrNnOdbPdRpbht_X7eD8',
+            imagerySet: 'AerialWithLabels'
+          })
+        }),
+        new ol.layer.Tile({
+          // A layer must have a title to appear in the layerswitcher
+          title: 'OSM',
+          // Again set this layer as a base layer
+          type: 'base',
+          visible: true,
+          source: new ol.source.OSM()
+        }),
+
+      ]
+    })
 
     // Draw vector layer
     // 1. Define source
@@ -292,8 +372,49 @@ $.ajax({
       features: load_features
     })
     // 2. Define layer
-    var draw_layer = new ol.layer.Vector({
-      source: draw_source
+    var draw_layer = new ol.layer.Group({
+      // A layer must have a title to appear in the layerswitcher
+      title: 'Overlays',
+      // Adding a 'fold' property set to either 'open' or 'close' makes the group layer
+      // collapsible
+      fold: 'open',
+      layers: [
+        new ol.layer.Vector({
+          // A layer must have a title to appear in the layerswitcher
+          title: 'Draw Layer',
+          source: draw_source
+        }),
+        /*new ol.layer.Group({
+          // A layer must have a title to appear in the layerswitcher
+          title: 'Census',
+          fold: 'open',
+          layers: [
+            new ol.layer.Image({
+              // A layer must have a title to appear in the layerswitcher
+              title: 'Local Authority Districts December 2011 Boundaries',
+              source: new ol.source.ImageArcGISRest({
+                ratio: 1,
+                params: {
+                  LAYERS: 'show:0'
+                },
+                url: 'https://ons-inspire.esriuk.com/arcgis/rest/services/Census_Boundaries/Census_Merged_Local_Authority_Districts_December_2011_Boundaries/MapServer'
+              })
+            }),
+            new ol.layer.Image({
+              // A layer must have a title to appear in the layerswitcher
+              title: 'Wards',
+              visible: false,
+              source: new ol.source.ImageArcGISRest({
+                ratio: 1,
+                params: {
+                  LAYERS: 'show:0'
+                },
+                url: 'https://ons-inspire.esriuk.com/arcgis/rest/services/Census_Boundaries/Census_Merged_Wards_December_2011_Boundaries/MapServer'
+              })
+            })
+          ]
+        })*/
+      ]
     })
 
     // Layer Array
@@ -309,10 +430,16 @@ $.ajax({
     // Map
     var map = new ol.Map({
       target: 'mymap',
-      view: myview,
       layers: layer_array,
+      view: myview,
       controls: mycontrols,
     });
+
+    var layerSwitcher = new ol.control.LayerSwitcher({
+      tipLabel: 'Légende', // Optional label for button
+      groupSelectStyle: 'children' // Can be 'children' [default], 'group' or 'none'
+    });
+    map.addControl(layerSwitcher);
 
     select_click = new ol.interaction.Select({
       condition: ol.events.condition.click,
@@ -335,19 +462,19 @@ $.ajax({
     };
 
     // function to find the clicked feature geometry type
-    map.on('click', function(evt) {
+    map.on('click', function (evt) {
       if (abort) { // if abort == true , function execution will stop
         return;
       }
       feature = map.forEachFeatureAtPixel(evt.pixel,
-        function(feature, layer) {
+        function (feature, layer) {
           if (abort) { // if abort == true , function execution will stop
             return;
           }
           return feature;
         }, {
-          hitTolerance: 8,
-        });
+        hitTolerance: 8,
+      });
       if (feature) { // if feature; exist
         if (abort) { // if abort == true , function execution will stop
           return;
@@ -357,57 +484,124 @@ $.ajax({
         console.log(type);
         selected_geom_type = type;
         console.log(selected_geom_type);
-        f_id = feature.getProperties().id; // getting feature_id
-        console.log(f_id);
+        g_id = feature.getProperties().id; // getting feature_id
+        console.log(g_id);
+        // sl_level = feature.getProperties().sl_level; // getting the administartive level
+        // console.log(sl_level);
+
+        $.ajax({
+          url: 'scripts/get_parcel_details.php',
+          type: 'POST', // method
+          data: {
+            /* type_of_geom: type, // new variables for passing data
+             name_of_geom: name, // new variables for passing data*/
+            // id: '786'// new variables for passing data
+            id: g_id
+          },
+          success: function (data) {
+            const allData = JSON.parse(data);
+            bindAllValues(allData);
+
+          },
+          error: function (error) {
+            alert("Error Occurred Please try again.")
+          }
+        })
+
+        overview_section.removeClass('hide-section');
+        save_section.addClass('hide-section');
+        share_section.addClass('hide-section');
+        bw_mc_section.addClass('hide-section');
+        print_section.addClass('hide-section');
+        import_section.addClass('hide-section');
+        export_section.addClass('hide-section');
+        data_store_section.addClass('hide-section');
+        $('.mcs-dropdown-menu').removeClass('show');
+        $('.display-mcs-btn').removeClass('show');
+        $('.zoom-level-btn').removeClass('show');
+        $('.zoom-level-dropdown').removeClass('show');
+        $('.layers-btn').removeClass('show');
+        $('.layers-selector-dropdown').removeClass('show');
+        $('.expand-menu-2').addClass('hide-section');
+        $('.expand-menu-3').addClass('hide-section');
+        $('.mcs-accordion-btn').addClass('collapsed');
+        if($('.mcs-accordion-body').hasClass('show')){
+          $('.mcs-accordion-body').removeClass('show');
+        }
+
+        if (check_class) {
+          sidebar_details_col.removeClass('hide');
+        } else {
+          return;
+        }
+
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].classList.remove('active');
+        };
+
+        $('#overview-btn').addClass('active');
+
+        toolbar.addClass('go-right-toolbar');
+
+        $('.ol-overlaycontainer-stopevent').addClass('go-right');
+
       };
     });
 
-    // function to add types of feature
-    function define_type_of_features() {
-      var drop_down_of_types = document.getElementById('type_of_features'); // Cathing HTML element with id='types_of_features' <select>
-      drop_down_of_types.innerHTML = ''; // Clearing previous values of the element before creating the <options> dynamically
-      if (selected_geom_type == 'Point') {
-        for (let i = 0; i < point_types.length; i++) {
-          var op = document.createElement('option'); // Creating dynamically HTML element <option> inside <select> element
-          op.value = point_types[i]; //Assigning values to <option>
-          op.innerHTML = point_types[i]; //Creating HTML elements for those assigned values
-          drop_down_of_types.appendChild(op); //Appending the created <option> element as a child element of <select> 
-        }
-      } else if (selected_geom_type == 'LineString') {
-        for (let i = 0; i < line_types.length; i++) {
-          var op = document.createElement('option'); // Creating dynamically HTML element <option> inside <select> element
-          op.value = line_types[i]; //Assigning values to <option>
-          op.innerHTML = line_types[i]; //Creating HTML elements for those assigned values
-          drop_down_of_types.appendChild(op); //Appending the created <option> element as a child element of <select> 
-        }
-      } else {
-        for (let i = 0; i < polygon_types.length; i++) {
-          var op = document.createElement('option'); // Creating dynamically HTML element <option> inside <select> element
-          op.value = polygon_types[i]; //Assigning values to <option>
-          op.innerHTML = polygon_types[i]; //Creating HTML elements for those assigned values
-          drop_down_of_types.appendChild(op); //Appending the created <option> element as a child element of <select> 
-        }
-      }
-    }
+    /*
+        // function to add types of feature
+        function define_type_of_features() {
+          var drop_down_of_types = document.getElementById('type_of_features'); // Cathing HTML element with id='types_of_features' <select>
+          drop_down_of_types.innerHTML = ''; // Clearing previous values of the element before creating the <options> dynamically
+          if (selected_geom_type == 'Point') {
+            for (let i = 0; i < point_types.length; i++) {
+              var op = document.createElement('option'); // Creating dynamically HTML element <option> inside <select> element
+              op.value = point_types[i]; //Assigning values to <option>
+              op.innerHTML = point_types[i]; //Creating HTML elements for those assigned values
+              drop_down_of_types.appendChild(op); //Appending the created <option> element as a child element of <select> 
+            }
+          } else if (selected_geom_type == 'LineString') {
+            for (let i = 0; i < line_types.length; i++) {
+              var op = document.createElement('option'); // Creating dynamically HTML element <option> inside <select> element
+              op.value = line_types[i]; //Assigning values to <option>
+              op.innerHTML = line_types[i]; //Creating HTML elements for those assigned values
+              drop_down_of_types.appendChild(op); //Appending the created <option> element as a child element of <select> 
+            }
+          } else {
+            for (let i = 0; i < polygon_types.length; i++) {
+              var op = document.createElement('option'); // Creating dynamically HTML element <option> inside <select> element
+              op.value = polygon_types[i]; //Assigning values to <option>
+              op.innerHTML = polygon_types[i]; //Creating HTML elements for those assigned values
+              drop_down_of_types.appendChild(op); //Appending the created <option> element as a child element of <select> 
+            }
+          }
+        }*/
 
     // Even is fired after the feature is added to the map
-    draw_source.on('addfeature', function(event) {
+    draw_source.on('addfeature', function (event) {
       drawn_feature = event.feature;
       console.log(drawn_feature);
       console.log("Drawing Finished!")
-      define_type_of_features(); // Activate the function in editing mode on
-      $('#enter_information_modal').modal('show'); // Show form to enter the information when the button is clicked after editing a feature when edit mode is on
+      /*define_type_of_features(); // Activate the function in editing mode on*/
+      /* $('#enter_information_modal').modal('show'); // Show form to enter the information when the button is clicked after editing a feature when edit mode is on*/
+      var confirm_msg_save = confirm("Are you sure, you want to ADD this feature!?");
+      if (confirm_msg_save == true) {
+        save_features_db()
+      } else { // if clicked cancel confirm_msg returns false
+        draw_source.removeFeature(drawn_feature); // remove clicked feature
+        return false; // Keep clicked feature
+      }
     });
-    
+
     // Event is fired after the features changed
-    draw_source.on('changefeature', function(event) {
+    draw_source.on('changefeature', function (event) {
       updated_feature = event.feature;
       console.log(updated_feature);
     })
 
     $('.ol-zoom-in, .ol-zoom-out').attr('data-toggle', "tooltip") // setting attributes to the Ol default buttons using jQuery
 
-    $(function() { // activating tooltip for every element containing 'data-toggle="tooltip"'
+    $(function () { // activating tooltip for every element containing 'data-toggle="tooltip"'
       $('[data-toggle="tooltip"]').tooltip()
     })
   }
@@ -423,44 +617,44 @@ function save_features_db() {
   console.log("Converted the feature to GeoJSON Object: ");
   console.log(feature_Geo_JSON);
 
-  // Catching the type of feature to the variable
-  var type = $('#type_of_features')[0].value;
-  console.log(type);
+  /* // Catching the type of feature to the variable
+   var type = $('#type_of_features')[0].value;
+   console.log(type);*/
 
-  // Catching the name of feature to the variable
-  var name = $('#name_of_feature')[0].value;
-  console.log(name);
+  /* // Catching the name of feature to the variable
+   var name = $('#name_of_feature')[0].value;
+   console.log(name);*/
 
   // Converting the geometry object to a string
   var geom = JSON.stringify(feature_Geo_JSON.geometry);
   console.log(geom);
 
-  if (type != '') { // If type is not empty
-    $.ajax({
-      url: 'scripts/save_features.php',
-      type: 'POST', // method
-      data: {
-        type_of_geom: type, // new variables for passing data
-        name_of_geom: name, // new variables for passing data
-        string_of_geom: geom // new variables for passing data
-      },
-      success: function() {
-        alert("Feature added successfully!");
-        console.log("Feature added successfully!");
-      }
-    })
-  } else {
+  /*if (type != '') { // If type is not empty*/
+  $.ajax({
+    url: 'scripts/save_features.php',
+    type: 'POST', // method
+    data: {
+      /* type_of_geom: type, // new variables for passing data
+       name_of_geom: name, // new variables for passing data*/
+      string_of_geom: geom // new variables for passing data
+    },
+    success: function () {
+      alert("Feature added successfully!");
+      console.log("Feature added successfully!");
+    }
+  })
+  /*} else {
     alert("Please select a feature type")
-  }
+  }*/
 
 }
 
-function change_modal_button() { // function to change the modal button
+/*function change_modal_button() { // function to change the modal button
   document.getElementById("button_save").classList.remove('btn-primary'); // removing the button bootsrap class on button
   document.getElementById("button_save").classList.add('btn-success'); // adding the button bootsrap class on button
   document.getElementById("button_save").innerText = 'Update Feature'; // Changing the button name
   document.getElementById("button_save").setAttribute('onclick', 'update_features_db()'); // Setting attributes to the button
-}
+}*/
 
 // function to update information in to DATABASE
 function update_features_db() {
@@ -473,12 +667,12 @@ function update_features_db() {
   console.log(feature_Geo_JSON);
 
   // Catching the type of feature to the variable
-  var type = $('#type_of_features')[0].value;
-  console.log(type);
+  /*var type = $('#type_of_features')[0].value;
+  console.log(type);*/
 
   // Catching the name of feature to the variable
-  var name = $('#name_of_feature')[0].value;
-  console.log(name);
+  /* var name = $('#name_of_feature')[0].value;
+   console.log(name);*/
 
   // Converting the geometry object to a string
   var geom = JSON.stringify(feature_Geo_JSON.geometry);
@@ -489,12 +683,12 @@ function update_features_db() {
       url: 'scripts/update_features.php',
       type: 'POST', // method
       data: {
-        type_of_geom: type, // new variables for passing data
-        name_of_geom: name, // new variables for passing data
+        /*type_of_geom: type, // new variables for passing data
+        name_of_geom: name, // new variables for passing data*/
         string_of_geom: geom, // new variables for passing data
-        id_of_feature: f_id, // new variables for passing data
+        id_of_feature: g_id, // new variables for passing data
       },
-      success: function() {
+      success: function () {
         alert("Feature Updated successfully!");
         console.log("Feature Updated successfully!");
       }
@@ -504,3 +698,358 @@ function update_features_db() {
   }
 
 }
+
+/* UI jquery */
+$(document).ready(function () {
+
+  /* Map Section Positioning */
+  map_section.css({
+    "margin-left": sidebar_width,
+  });
+
+  /* Dashboard Section Positioning */
+  sidebar_details_col.css({
+    "margin-left": sidebar_width
+  });
+
+  /* Dashboard Expand Function */
+  $(".nav-link").each(function (index) {
+    $(this).on("click", function () {
+
+      if (check_class) {
+        sidebar_details_col.removeClass('hide');
+      } else {
+        return;
+      }
+
+      toolbar.addClass('go-right-toolbar');
+      $('.ol-overlaycontainer-stopevent').addClass('go-right');
+    });
+  });
+
+  // expand second menu
+  $(".btn-district-btn").each(function (index) {
+    $(this).on("click", function () {
+      $('.btn-district-btn').each(function(index){
+        $(this).removeClass('active');
+      })
+      $(this).addClass('active');
+      $('.expand-menu-2').removeClass('hide-section');
+    });
+  });
+
+  $(".mcs-accordion-btn").each(function (index) {
+    $(this).on("click", function () {
+      $('.btn-district-btn').each(function(index){
+        $(this).removeClass('active');
+      })
+      $('.expand-menu-2').addClass('hide-section');
+      $('.expand-menu-3').addClass('hide-section');
+    });
+  });
+  // expand third menu
+  $(".second-menu-btn").each(function (index) {
+    $(this).on("click", function () {
+      $('.second-menu-btn').each(function(index){
+        $(this).removeClass('active');
+      })
+      $(this).addClass('active');
+      $('.expand-menu-3').removeClass('hide-section');
+    });
+  });
+
+  /* Dashboard Close Function */
+  $(".btn-sidebar-det-close").click(function () {
+
+    sidebar_details_col.addClass('hide');
+
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.remove('active');
+    };
+
+    toolbar.removeClass('go-right-toolbar');
+    $('.ol-overlaycontainer-stopevent').removeClass('go-right');
+  });
+
+  /* Add active class to the current button (highlight it) */
+  $(".nav-link").click(function () {
+
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.remove('active');
+    };
+    if (g_id) {
+      $(this).addClass('active');
+    }
+
+  });
+
+  $(".nav-link").hover(function () {
+
+    if (g_id) {
+      $(this).css({
+        'cursor':'pointer',
+      });
+    } else {
+      $(this).css({
+        // 'cursor':'not-allowed',
+      })
+    }
+  
+  });
+
+  /* Parcel Click to Open Overview & Active Sidebar Overview */
+  // $('.expand-btn').click(function () {
+
+  //   overview_section.removeClass('hide-section');
+  //   save_section.addClass('hide-section');
+  //   share_section.addClass('hide-section');
+
+  //   if (check_class) {
+  //     sidebar_details_col.removeClass('hide');
+  //   } else {
+  //     return;
+  //   }
+
+  //   for (var i = 0; i < btns.length; i++) {
+  //     btns[i].classList.remove('active');
+  //   };
+
+  //   $('#overview-btn').addClass('active');
+
+  // });
+
+  $("#overview-btn").click(function () {
+    // if (g_id) {
+      
+    // }
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    overview_section.removeClass('hide-section');
+    export_section.addClass('hide-section');
+    import_section.addClass('hide-section');
+    print_section.addClass('hide-section');
+    save_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    data_store_section.addClass('hide-section');
+    $('.boundary-text').removeClass('hide-section');
+    $('.sidebar-det-top-sec').removeClass('hide-section');
+  });
+  $("#save-btn").click(function () {
+    if (g_id) {
+      if (check_class) {
+        sidebar_details_col.removeClass('hide');
+      } else {
+        return;
+      }
+      save_section.removeClass('hide-section');
+      overview_section.addClass('hide-section');
+      share_section.addClass('hide-section');
+      bw_mc_section.addClass('hide-section');
+    }
+  });
+  $("#share-btn").click(function () {
+    if (g_id) {
+      if (check_class) {
+        sidebar_details_col.removeClass('hide');
+      } else {
+        return;
+      }
+      share_section.removeClass('hide-section');
+      overview_section.addClass('hide-section');
+      save_section.addClass('hide-section');
+      bw_mc_section.addClass('hide-section');
+    }
+  });
+  $("#bw-mc-btn").click(function () {
+    if (g_id) {
+      if (check_class) {
+        sidebar_details_col.removeClass('hide');
+      } else {
+        return;
+      }
+      bw_mc_section.removeClass('hide-section');
+      overview_section.addClass('hide-section');
+      save_section.addClass('hide-section');
+      share_section.addClass('hide-section');
+    }
+  });
+  $("#export-btn").click(function () {    
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    export_section.removeClass('hide-section');
+    import_section.addClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    overview_section.addClass('hide-section');
+    print_section.addClass('hide-section');
+    save_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+    data_store_section.addClass('hide-section');
+    $('.boundary-text').addClass('hide-section');
+    // $('.sidebar-det-top-sec').addClass('hide-section');
+  });
+  $("#import-btn").click(function () {    
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    import_section.removeClass('hide-section');
+    export_section.addClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    overview_section.addClass('hide-section');
+    save_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+    print_section.addClass('hide-section');
+    data_store_section.addClass('hide-section');
+    $('.boundary-text').addClass('hide-section');
+    // $('.sidebar-det-top-sec').addClass('hide-section');
+  });
+  $("#print-btn").click(function(){
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    print_section.removeClass('hide-section');
+    import_section.addClass('hide-section');
+    export_section.addClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    overview_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+    data_store_section.addClass('hide-section');
+    $('.boundary-text').addClass('hide-section');
+    // $('.sidebar-det-top-sec').addClass('hide-section');
+  })
+  $("#data-store-btn").click(function(){
+    if (check_class) {
+      sidebar_details_col.removeClass('hide');
+    } else {
+      return;
+    }
+    data_store_section.removeClass('hide-section');
+    print_section.addClass('hide-section');
+    import_section.addClass('hide-section');
+    export_section.addClass('hide-section');
+    bw_mc_section.addClass('hide-section');
+    overview_section.addClass('hide-section');
+    share_section.addClass('hide-section');
+    save_section.addClass('hide-section');
+    $('.boundary-text').addClass('hide-section');
+    // $('.sidebar-det-top-sec').addClass('hide-section');
+  })
+  $('.sidebar-col').click(function(){
+    $('.dropdown-menu').each(function(){
+      $(this).removeClass('show');
+    });
+    $('.tool-btn').each(function(){
+      $(this).removeClass('show');
+    });
+  });
+  $('.display-mcs-btn').click(function(){
+    $('.zoom-level-dropdown').removeClass('show');
+    $('.zoom-level-btn').removeClass('show');
+    $('.layers-btn').removeClass('show');
+    $('.layers-selector-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+    if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    }
+  });
+  $('.zoom-level-btn').click(function(){
+    $('.mcs-dropdown-menu').removeClass('show');
+    $('.display-mcs-btn').removeClass('show');
+    $('.layers-btn').removeClass('show');
+    $('.layers-selector-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+    if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    }
+  });
+  $('.layers-btn').click(function(){
+    $('.mcs-dropdown-menu').removeClass('show');
+    $('.display-mcs-btn').removeClass('show');
+    $('.zoom-level-btn').removeClass('show');
+    $('.zoom-level-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+    if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    }
+  });
+  $('.btn-locate-me').click(function(){
+    $('.mcs-dropdown-menu').removeClass('show');
+    $('.display-mcs-btn').removeClass('show');
+    $('.zoom-level-btn').removeClass('show');
+    $('.zoom-level-dropdown').removeClass('show');
+    $('.layers-btn').removeClass('show');
+    $('.layers-selector-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+        if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    }
+  });
+  $('.btn-back').click(function(){
+    $('.mcs-dropdown-menu').removeClass('show');
+    $('.display-mcs-btn').removeClass('show');
+    $('.zoom-level-btn').removeClass('show');
+    $('.zoom-level-dropdown').removeClass('show');
+    $('.layers-btn').removeClass('show');
+    $('.layers-selector-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+        if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    }
+  });
+  $('.breadcrumb-section').click(function(){
+    $('.mcs-dropdown-menu').removeClass('show');
+    $('.display-mcs-btn').removeClass('show');
+    $('.zoom-level-btn').removeClass('show');
+    $('.zoom-level-dropdown').removeClass('show');
+    $('.layers-btn').removeClass('show');
+    $('.layers-selector-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+        if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    }
+  });
+  $('.top-nav').click(function(){
+    $('.mcs-dropdown-menu').removeClass('show');
+    $('.display-mcs-btn').removeClass('show');
+    $('.zoom-level-btn').removeClass('show');
+    $('.zoom-level-dropdown').removeClass('show');
+    $('.layers-btn').removeClass('show');
+    $('.layers-selector-dropdown').removeClass('show');
+    $('.expand-menu-2').addClass('hide-section');
+    $('.expand-menu-3').addClass('hide-section');
+    $('.mcs-accordion-btn').addClass('collapsed');
+        if($('.mcs-accordion-body').hasClass('show')){
+      $('.mcs-accordion-body').removeClass('show');
+    } 
+  });
+  $('#select-municipalities').on('change', function() {
+    $('.hidden-check-sec-2').removeClass('hide');
+  });
+  $('#select-mcs').on('change', function(){
+    $('.hidden-check-sec-1').removeClass('hide');
+  })
+  /* end: Dashboard Content Change Dummy */
+
+});

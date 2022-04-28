@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$db = 'infobhoomi_test';
+$db = 'info_bhoomi';
 $user = 'postgres';
-$pass = '123';
+$pass = 'bandarawela';
 $port = '5432';
 
 $dsn = "pgsql:host=$host;dbname=$db;port=$port";

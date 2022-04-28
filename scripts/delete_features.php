@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { // checking the server request metho
     if (isset($_POST['id_of_feature'])) { // checking if there are data exist from the POST method 
         $id = $_POST['id_of_feature']; //  POST method data type
         try {
-            $sql = "DELETE FROM feature_drawn WHERE feature_id = :id"; // query for the record delete
+            $sql = "DELETE FROM parcels WHERE gid = :id"; // query for the record delete
             $stmnt = $pdo->prepare($sql); // prepareing the sql as a pdo statement
             $stmnt->execute([":id" => $id]); // executing the statement
         } catch (PDOException $e) {

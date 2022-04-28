@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width/ initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>InfoBhoomi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Openlayers CSS -->
+    <link rel="stylesheet" href="./assets/css/ol.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./custom/css/style.css">
+    <!-- Openlayers JS -->
+    <script src="./assets/js/ol.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light top-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="./assets/img/Logo.png" class="logo-img" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse me-auto" id="navbarSupportedContent">
+                <div class="d-flex top-right">
+                    <button class="btn signin-btn" data-bs-toggle="modal" data-bs-target="#signin-modal"><i class="fas fa-unlock btn-icon"></i> Sign in or register</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Signup Form -->
+    <div class="container pb-2 pt-2">
+        <h4 class="permissions-h4">Registered User List</h4>
+        <!-- Modal Details-->
+        <div class="modal fade" data-bs-backdrop="static" id="show-form-modal" tabindex="-1"
+            aria-labelledby="show-form-modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Application Details</h3>
+                        <button type="button" class="btn-close
+                                rights-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="application-details">
+                            <div class="row">
+                                <div class="attr">
+                                    Username 
+                                </div>
+                                <div class="val">
+                                    Kamal Bandara
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    User Role Type 
+                                </div>
+                                <div class="val">
+                                    Administrator
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Province 
+                                </div>
+                                <div class="val">
+                                    Uva
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    District 
+                                </div>
+                                <div class="val">
+                                    Badulla
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Divisional Secretariat 
+                                </div>
+                                <div class="val">
+                                    DS_001
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Organization Type 
+                                </div>
+                                <div class="val">
+                                    Organization One
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Organization Name 
+                                </div>
+                                <div class="val">
+                                    Organization One
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Department/Branch Name 
+                                </div>
+                                <div class="val">
+                                    Department One
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Section Name 
+                                </div>
+                                <div class="val">
+                                    Section one
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    User ID 
+                                </div>
+                                <div class="val">
+                                    Section one
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Authentication Letter 
+                                </div>
+                                <div class="val">
+                                    <button class="btn download-btn">Download Letter</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Telephone 
+                                </div>
+                                <div class="val">
+                                    0112456789
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Email 
+                                </div>
+                                <div class="val">
+                                    kamalbandara@gmail.com
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="attr">
+                                    Address 
+                                </div>
+                                <div class="val">
+                                    No. 34, Badulla Road, Bandarawela
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Rights-->
+        <div class="modal fade" data-bs-backdrop="static" id="rights-modal" tabindex="-1"
+            aria-labelledby="rights-modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close
+                                rights-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <h3>Rights Group 1</h3>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Draw
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Edit
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Delete
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Update
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h3>Rights Group 2</h3>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Create User
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Delete User
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Update User
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Assign Rights
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h3>Rights Group 3</h3>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g3 001
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g3 002
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g3 003
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g3 004
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <h3>Rights Group 1</h3>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g1 001
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g1 002
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g1 003
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Right g1 004
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save
+                            changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Remove-->
+        <div class="modal fade" data-bs-backdrop="static" id="delete-modal" tabindex="-1"
+            aria-labelledby="delete-modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Are You Sure?</h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="table-w-15">Application No:</th>
+                    <th scope="col" class="table-w-15">User ID</th>
+                    <th scope="col" class="table-w-20">Approved Date</th>
+                    <th scope="col">Rights</th>
+                    <th scope="col" class="table-w-15">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="table-w-15">app_no:1</td>
+                    <td class="table-w-15">u_id:001_saman</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Edit/ Delete/ Update/ Create User</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:2</td>
+                    <td class="table-w-15">u_id:002_nimal</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Update/ Create User</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:3</td>
+                    <td class="table-w-15">u_id:003_namal</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Edit/ Delete/ Update/ Create User/ Assign rights/ Draw/ Edit/ Delete/ Update</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:1</td>
+                    <td class="table-w-15">u_id:001_saman</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Edit/ Delete/ Update/ Create User</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:2</td>
+                    <td class="table-w-15">u_id:002_nimal</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Update/ Create User</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:3</td>
+                    <td class="table-w-15">u_id:003_namal</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Edit/ Delete/ Update/ Create User/ Assign rights/ Draw/ Edit/ Delete/ Update</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:1</td>
+                    <td class="table-w-15">u_id:001_saman</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Edit/ Delete/ Update/ Create User</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:2</td>
+                    <td class="table-w-15">u_id:002_nimal</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Update/ Create User</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-w-15">app_no:3</td>
+                    <td class="table-w-15">u_id:003_namal</td>
+                    <td class="table-w-20">2022-02-02</td>
+                    <td>Draw/ Edit/ Delete/ Update/ Create User/Assign rights/ Draw/ Edit/ Delete/ Update</td>
+                    <td class="table-w-15">
+
+                        <button class="btn border-only-blue show-form-btn" data-bs-toggle="modal"
+                            data-bs-target="#show-form-modal">Show Application</button>
+                        <button class="btn border-only-blue" data-bs-toggle="modal"
+                            data-bs-target="#rights-modal">Assign Rights</button>
+                        <button class="btn border-only-red" data-bs-toggle="modal"
+                            data-bs-target="#delete-modal">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="./custom/js/main.js"></script>
+</body>
+
+</html>
